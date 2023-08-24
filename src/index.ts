@@ -76,17 +76,15 @@ async function run() {
     })
     assignees = assignees.concat(results.assigneesToAdd);
 
-    const firstLine = issue.body.split('\n')[0];
-    const versionMatch = firstLine.match(/### Version (\d+\.\d+\.\d+)\(\1\) ###/);
+    if(firstLine.substr(0, 12) == '### Version ')
+    {
+      var versionMatch = firstLine.match(/\((.*?)\)/)[1];
+      var versionCode = versionMatch[1];
 
-    if (versionMatch) {
-      const versionCode = versionMatch[1];
       console.log('Found version code:', versionCode);
 
-      labels.append(versionCode);
-      labels.append('AppCenter');
-    } else {
-      console.log('Version format not found in the first line.');
+      labels.push(versionCode);
+      labels.push('AppCenter');
     }
 
     await client.issues.update({

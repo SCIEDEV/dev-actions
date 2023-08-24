@@ -1,2 +1,3 @@
 # never checkin env secrets
 .env
+node_modules/*
