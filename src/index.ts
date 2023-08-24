@@ -76,6 +76,19 @@ async function run() {
     })
     assignees = assignees.concat(results.assigneesToAdd);
 
+    const firstLine = issue.body.split('\n')[0];
+    const versionMatch = firstLine.match(/### Version (\d+\.\d+\.\d+)\(\1\) ###/);
+
+    if (versionMatch) {
+      const versionCode = versionMatch[1];
+      console.log('Found version code:', versionCode);
+
+      labels.append(versionCode);
+      labels.append('AppCenter');
+    } else {
+      console.log('Version format not found in the first line.');
+    }
+
     await client.issues.update({
       owner: github.context.repo.owner,
       repo: github.context.repo.repo,
