@@ -2,7 +2,6 @@ import * as fs from 'fs'
 import * as irm from './issuerules'
 import * as core from '@actions/core'
 import * as github from '@actions/github'
-import * from './node_modules/util';
 
 async function run() {
   try {
@@ -79,13 +78,14 @@ async function run() {
 
     if(firstLine.substr(0, 12) == '### Version ')
     {
-      var versionMatch = firstLine.match(/\((.*?)\)/)[1];
+      /*var versionMatch = firstLine.match(/\((.*?)\)/)[1];
       var versionCode = versionMatch[1];
 
       console.log('Found version code:', versionCode);
 
       labels.push(versionCode);
-      labels.push('AppCenter');
+      labels.push('AppCenter');*/
+      console.log("IS VERSION TYPE")''
     }
 
     await client.issues.update({
