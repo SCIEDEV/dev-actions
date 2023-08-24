@@ -1,2 +1,3 @@
 # never checkin env secrets
 .env
+.DS_Store

@@ -2,7 +2,7 @@ import * as fs from 'fs'
 import * as irm from './issuerules'
 import * as core from '@actions/core'
 import * as github from '@actions/github'
-import util from 'util';
+import * from './node_modules/util';
 
 async function run() {
   try {
